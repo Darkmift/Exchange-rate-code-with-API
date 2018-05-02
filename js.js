@@ -19,15 +19,10 @@ function getSymbolList(inputName) {
             console.log(e, status);
         },
         success: function(data, status) {
-            //console.log(data.rates);
             rates = data.rates;
-            // console.log(Object.keys(data.rates));
             var result = Object.keys(rates).map(function(key) {
-                // symArray[key] = rates[key];
                 selectSymbol.append($('<option>').attr('value', rates[key]).text(key));
-                // return symArray;
             });
-
         },
     });
     $('#' + inputName).append($('<label>').attr('for', inputName), selectSymbol);
@@ -36,10 +31,10 @@ getSymbolList('fromCoin1');
 getSymbolList('fromCoin2');
 
 $("form").submit(function(e) {
-    baseInput = $('#base').val();
+    baseInput = Number($('#base').val());
     synbolInput = $('#symbol');
-    fromCoinVal = $('#fromCoin1_selectedVal').val();
-    toCoinVal = $('#fromCoin2_selectedVal').val();
+    fromCoinVal = Number($('#fromCoin1_selectedVal').val());
+    toCoinVal = Number($('#fromCoin2_selectedVal').val());
     e.preventDefault();
     console.log('form clicked');
     console.log('baseInput: ', baseInput, 'fromCoinVal: ', fromCoinVal, 'toCoinVal: ', toCoinVal);
